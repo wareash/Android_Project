@@ -52,8 +52,8 @@ typedef struct {
 
 static const JNINativeMethod methods[] = {
 	{"ledOpen",  "()I", (void *)ledOpen},
-	{"ledClose",  "()", (void *)ledOpen},
-	{"ledCtl",  "(II)I", (void *)ledOpen},
+	{"ledClose",  "()", (void *)ledClose},
+	{"ledCtl",  "(II)I", (void *)ledCtl},
 };
 
 
