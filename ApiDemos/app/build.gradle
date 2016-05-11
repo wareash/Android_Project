@@ -1,0 +1,27 @@
+apply plugin: 'com.android.application'
+android {
+    compileSdkVersion 21
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.example.android.apis"
+
+        testApplicationId "com.example.android.apis.tests"
+        testInstrumentationRunner "android.test.InstrumentationTestRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+    defaultConfig {
+        minSdkVersion 21
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:24.0.0-alpha2'
+}
+
