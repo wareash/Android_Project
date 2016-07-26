@@ -1,0 +1,7 @@
+#ifndef _TEST_SERVER_H_
+#define _TEST_SERVER_H_
+
+#define	HELLO_SVR_CMD_SAYHELLO 0
+#define	HELLO_SVR_CMD_SAYHELLO_TO 1
+
+#endif //_TEST_SERVER_H_
