@@ -144,7 +144,7 @@ int main(int argc, char **argv)
 	    return -1;
 	}
 	
-	svcmgr_publish(bs, svcmgr, "goodbye", (void *)123);
+	svcmgr_publish(bs, svcmgr, "goodbye", (void *)124);
 	if (ret) {
 	    fprintf(stderr, "failed to publish goodbye services\n");
 	    return -1;
