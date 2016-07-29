@@ -64,13 +64,13 @@ unsigned token;
 void sayhello(void)
 { 
 	static int cnt = 0;
-	fprintf(stderr, "say hello %d \n", cnt);
+	fprintf(stderr, "say hello %d \n", cnt++);
 }
 
 int sayhello_to(char *name)
 {
 	static int cnt = 0;
-	fprintf(stderr, "say hello to %s  cnt = %d \n", name, cnt);
+	fprintf(stderr, "say hello to %s  cnt = %d \n", name, cnt++);
 	return cnt;
 }
 int hello_service_handler(struct binder_state *bs,
@@ -78,11 +78,7 @@ int hello_service_handler(struct binder_state *bs,
                    struct binder_io *msg,
                    struct binder_io *reply)
 {
-	/*
-	  * 由txn->code判断是写操作还是读操作，
-	  * 如果是写操作，就从msg中取出参数
-	  * 如果是读操作，就从reply中返回数据
-	  */
+
     char name[512];	  
     struct svcinfo *si;
 	uint16_t *s;
@@ -90,7 +86,7 @@ int hello_service_handler(struct binder_state *bs,
 	uint32_t handle;
 	uint32_t strict_policy;
 	int allow_isolated;
-	uint16_t  i;
+	int i;
 
 	// Equivalent to Parcel::enforceInterface(), reading the RPC
 	// header with the strict mode policy mask and the interface name.
@@ -101,7 +97,7 @@ int hello_service_handler(struct binder_state *bs,
 	switch(txn->code) {
 	case HELLO_SVR_CMD_SAYHELLO:
     		sayhello();
-		break;
+		return 0;
 			
     case HELLO_SVR_CMD_SAYHELLO_TO:
 	 s = bio_get_string16(msg, &len);
@@ -115,9 +111,10 @@ int hello_service_handler(struct binder_state *bs,
 	/* call function to deal */
 	i = sayhello_to(name);
 	
+	
 	/* put result to reply */
-       bio_put_string16(reply, &i);
-	   
+	bio_put_uint32(reply, i);
+//	ALOGE(" sayhello_to return value = %d\n", i);   
 	break;
 		
     default:
@@ -142,13 +139,13 @@ int main(int argc, char **argv)
 
 	/*add server*/
 	ret = svcmgr_publish(bs, svcmgr, "hello", (void *)123);
-	if (!ret) {
+	if (ret) {
 	    fprintf(stderr, "failed to publish hello services\n");
 	    return -1;
 	}
 	
 	svcmgr_publish(bs, svcmgr, "goodbye", (void *)123);
-	if (!ret) {
+	if (ret) {
 	    fprintf(stderr, "failed to publish goodbye services\n");
 	    return -1;
 	}

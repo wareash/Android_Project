@@ -72,7 +72,8 @@ void sayhello(void)  // refre to svcmgr_lookup
 	/* put args in binder_io */
 
 	/* call binder_call */
-	binder_call(g_bs, &msg, &reply, g_handle, HELLO_SVR_CMD_SAYHELLO);
+    if (binder_call(g_bs, &msg, &reply, g_handle, HELLO_SVR_CMD_SAYHELLO))
+        return ;
 	
 	/* replay from server, and prase return value */
 
@@ -93,7 +94,7 @@ int  sayhello_to(char *name)
 	bio_put_string16_x(&msg, name);
 	
 	/* call binder_call */
-	if (binder_call(g_bs, &msg, &reply, g_handle, HELLO_SVR_CMD_SAYHELLO))
+	if (binder_call(g_bs, &msg, &reply, g_handle, HELLO_SVR_CMD_SAYHELLO_TO))
 	    return 0;
 	
 	/* replay from server, and prase return value */
@@ -116,6 +117,13 @@ int main(int argc, char **argv)
 	uint32_t svcmgr = BINDER_SERVICE_MANAGER;
 	uint32_t handle;
 	int ret;
+
+	if(argc < 2){
+	    fprintf(stderr, "Usage :\n");
+	    fprintf(stderr, "./test_client hello  \n");
+	    fprintf(stderr, "./test_client hello <name> \n");
+	    return -1;
+	}
 
 	bs = binder_open(128*1024);
 	if (!bs) {

@@ -72,17 +72,20 @@ static bool check_mac_perms_from_lookup(pid_t spid, const char *perm, const char
 
 static int svc_can_register(const uint16_t *name, size_t name_len, pid_t spid)
 {
-    return true;
+    const char *perm = "add";
+    return check_mac_perms_from_lookup(spid, perm, str8(name, name_len)) ? 1 : 0;
 }
 
 static int svc_can_list(pid_t spid)
 {
-    return true;
+    const char *perm = "list";
+    return check_mac_perms_from_getcon(spid, perm) ? 1 : 0;
 }
 
 static int svc_can_find(const uint16_t *name, size_t name_len, pid_t spid)
 {
-    return true;
+    const char *perm = "find";
+    return check_mac_perms_from_lookup(spid, perm, str8(name, name_len)) ? 1 : 0;
 }
 
 struct svcinfo
