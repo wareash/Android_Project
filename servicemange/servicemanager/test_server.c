@@ -66,13 +66,24 @@ void sayhello(void)
 	static int cnt = 0;
 	fprintf(stderr, "say hello %d \n", cnt++);
 }
-
+void saygoodbye(void)
+{ 
+	static int cnt = 0;
+	fprintf(stderr, "say goodbye %d \n", cnt++);
+}
 int sayhello_to(char *name)
 {
 	static int cnt = 0;
 	fprintf(stderr, "say hello to %s  cnt = %d \n", name, cnt++);
 	return cnt;
 }
+int saygoodbye_to(char *name)
+{
+	static int cnt = 0;
+	fprintf(stderr, "say goodbye to %s  cnt = %d \n", name, cnt++);
+	return cnt;
+}
+
 int hello_service_handler(struct binder_state *bs,
                    struct binder_transaction_data *txn,
                    struct binder_io *msg,
@@ -124,6 +135,72 @@ int hello_service_handler(struct binder_state *bs,
    }
     return 0;
 }
+
+int goodbye_service_handler(struct binder_state *bs,
+                   struct binder_transaction_data *txn,
+                   struct binder_io *msg,
+                   struct binder_io *reply)
+{
+
+    char name[512];	  
+    struct svcinfo *si;
+	uint16_t *s;
+	size_t len;
+	uint32_t handle;
+	uint32_t strict_policy;
+	int allow_isolated;
+	int i;
+
+	// Equivalent to Parcel::enforceInterface(), reading the RPC
+	// header with the strict mode policy mask and the interface name.
+	// Note that we ignore the strict_policy and don't propagate it
+	// further (since we do no outbound RPCs anyway).
+	strict_policy = bio_get_uint32(msg);
+
+	switch(txn->code) {
+	case GOODBYE_SVR_CMD_SAYGOODBYE:
+    		saygoodbye();
+		return 0;
+			
+    case GOODBYE_SVR_CMD_SAYGOODBYE_TO:
+	 s = bio_get_string16(msg, &len);
+        if (s == NULL) {
+            return -1;
+        }
+	for (i=0; i<len; i++)
+		name[i] = s[i];
+	name[i] = '\0';
+
+	/* call function to deal */
+	i = saygoodbye_to(name);
+	
+	
+	/* put result to reply */
+	bio_put_uint32(reply, i);
+//	ALOGE(" sayhello_to return value = %d\n", i);   
+	break;
+		
+    default:
+        ALOGE("unknown code %d\n", txn->code);
+        return -1;
+
+   }
+    return 0;
+}
+int test_service_handler(struct binder_state *bs,
+                   struct binder_transaction_data *txn,
+                   struct binder_io *msg,
+                   struct binder_io *reply)
+{
+	if(txn->target.ptr == 123)
+		return hello_service_handler(bs, txn, msg, reply);
+	else if(txn->target.ptr == 124)
+		return goodbye_service_handler(bs, txn, msg, reply);
+	else {
+	        ALOGE("unknown code  \n");
+		return -1;
+	}
+}
 int main(int argc, char **argv)
 {
     int fd,ret;
@@ -157,7 +234,7 @@ int main(int argc, char **argv)
 		/*reply data*/
 	}
 	#endif
-	binder_loop(bs, hello_service_handler);
+	binder_loop(bs, test_service_handler);
 
     return 0;
 }

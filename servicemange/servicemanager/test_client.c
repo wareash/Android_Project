@@ -10,7 +10,8 @@
 
 
 struct binder_state *g_bs;
-uint32_t g_handle;
+uint32_t g_hello_handle;
+uint32_t g_goodbye_handle;
 
 #define ALOGI(x...) fprintf(stderr, "svcmgr: " x)
 #define ALOGE(x...) fprintf(stderr, "svcmgr: " x)
@@ -72,7 +73,7 @@ void sayhello(void)  // refre to svcmgr_lookup
 	/* put args in binder_io */
 
 	/* call binder_call */
-    if (binder_call(g_bs, &msg, &reply, g_handle, HELLO_SVR_CMD_SAYHELLO))
+    if (binder_call(g_bs, &msg, &reply, g_hello_handle, HELLO_SVR_CMD_SAYHELLO))
         return ;
 	
 	/* replay from server, and prase return value */
@@ -94,7 +95,51 @@ int  sayhello_to(char *name)
 	bio_put_string16_x(&msg, name);
 	
 	/* call binder_call */
-	if (binder_call(g_bs, &msg, &reply, g_handle, HELLO_SVR_CMD_SAYHELLO_TO))
+	if (binder_call(g_bs, &msg, &reply, g_hello_handle, HELLO_SVR_CMD_SAYHELLO_TO))
+	    return 0;
+	
+	/* replay from server, and prase return value */
+	ret = bio_get_uint32(&reply);
+	
+	binder_done(g_bs, &msg, &reply);
+
+	return ret;
+}
+void saygoodbye(void)  // refre to svcmgr_lookup
+{
+	unsigned iodata[512/4];
+	struct binder_io msg, reply;
+	
+	/* creat a binder_io */
+	bio_init(&msg, iodata, sizeof(iodata), 4);
+	bio_put_uint32(&msg, 0);  // strict mode header
+
+	/* put args in binder_io */
+
+	/* call binder_call */
+    if (binder_call(g_bs, &msg, &reply, g_goodbye_handle, GOODBYE_SVR_CMD_SAYGOODBYE))
+        return ;
+	
+	/* replay from server, and prase return value */
+
+	binder_done(g_bs, &msg, &reply);
+
+}
+int  saygoodbye_to(char *name)
+{
+	unsigned iodata[512/4];
+	struct binder_io msg, reply;
+	int ret;
+	
+	/* creat a binder_io */
+	bio_init(&msg, iodata, sizeof(iodata), 4);
+	bio_put_uint32(&msg, 0);  // strict mode header
+
+	/* put args in binder_io */
+	bio_put_string16_x(&msg, name);
+	
+	/* call binder_call */
+	if (binder_call(g_bs, &msg, &reply, g_goodbye_handle, GOODBYE_SVR_CMD_SAYGOODBYE_TO))
 	    return 0;
 	
 	/* replay from server, and prase return value */
@@ -120,8 +165,8 @@ int main(int argc, char **argv)
 
 	if(argc < 2){
 	    fprintf(stderr, "Usage :\n");
-	    fprintf(stderr, "./test_client hello  \n");
-	    fprintf(stderr, "./test_client hello <name> \n");
+	    fprintf(stderr, "./test_client <hello |goodbye>   \n");
+	    fprintf(stderr, "./test_client <hello |goodbye> <name> \n");
 	    return -1;
 	}
 
@@ -135,20 +180,46 @@ int main(int argc, char **argv)
 	handle = svcmgr_lookup(bs, svcmgr, "hello");
 	if (!handle)
 	{
-	    fprintf(stderr, "failed to svcmgr_lookup\n");
+	    fprintf(stderr, "failed to get hello service %d\n",handle);
 	    return -1;
 	}
-	g_handle = handle;
+	g_hello_handle = handle;
+	fprintf(stderr, "get hello service handle = %d\n",g_hello_handle);
+	
+	handle = svcmgr_lookup(bs, svcmgr, "goodbye");
+	if (!handle)
+	{
+	    fprintf(stderr, "failed to get goodbye service %d\n",handle);
+	    return -1;
+	}
+	g_goodbye_handle = handle;
+	fprintf(stderr, "get goodbye service handle = %d\n",g_goodbye_handle);
+	
 	/* send data to server */
-	if(argc==2)
+	if(!strcmp(argv[1], "hello"))
 	{
-		sayhello();
-	}else if (argc==3)
+		if(argc==2)
+		{
+			sayhello();
+		}else if (argc==3)
+		{
+			ret = sayhello_to(argv[2]);
+			fprintf(stderr, "get ret from sayhello_to %d  \n", ret);
+		}
+	}else if(!strcmp(argv[1], "goodbye"))
 	{
-		ret = sayhello_to(argv[2]);
-		fprintf(stderr, "get ret from sayhello_to %d  \n", ret);
+		if(argc==2)
+		{
+			saygoodbye();
+		}else if (argc==3)
+		{
+			ret = saygoodbye_to(argv[2]);
+			fprintf(stderr, "get ret from saygoodbye_to %d  \n", ret);
+		}
 	}
 
-	binder_release(g_bs, g_handle);
+	binder_release(g_bs, g_hello_handle);
+	binder_release(g_bs, g_goodbye_handle);
 	return 0;
 }
+
