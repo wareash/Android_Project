@@ -1,0 +1,174 @@
+[root@FriendlyARM servicemanager]# ./service_manager &
+[root@FriendlyARM servicemanager]# [  104.904118] service_manager, (1393, 1393), binder_thread_write, BC_ENTER_LOOPER 
+[  104.904299] service_manager, (1393, 1393), binder_thread_read, BR_NOOP 
+
+[root@FriendlyARM servicemanager]# 
+[root@FriendlyARM servicemanager]# 
+[root@FriendlyARM servicemanager]# 
+[root@FriendlyARM servicemanager]# ./test_server &
+[root@FriendlyARM servicemanager]# [  128.278543] test_server, (1394, 1394), binder_thread_write, BC_TRANSACTION 
+[  128.278671] binder: 1394:1394 BC_TRANSACTION 2 -> 1393 - node 1, data bea26a6c-bea26a5c size 96-4
+[  128.278780] test_server, (1394, 1394), binder_transaction, print data: 
+[  128.278858] 0000: 00 . 00 . 00 . 00 . 1a . 00 . 00 . 00 . 61 a 00 . 6e n 00 . 64 d 00 . 72 r 00 .
+[  128.287498] 0016: 6f o 00 . 69 i 00 . 64 d 00 . 2e . 00 . 6f o 00 . 73 s 00 . 2e . 00 . 49 I 00 .
+[  128.296351] 0032: 53 S 00 . 65 e 00 . 72 r 00 . 76 v 00 . 69 i 00 . 63 c 00 . 65 e 00 . 4d M 00 .
+[  128.305205] 0048: 61 a 00 . 6e n 00 . 61 a 00 . 67 g 00 . 65 e 00 . 72 r 00 . 00 . 00 . 00 . 00 .
+[  128.314062] 0064: 05 . 00 . 00 . 00 . 68 h 00 . 65 e 00 . 6c l 00 . 6c l 00 . 6f o 00 . 00 . 00 .
+[  128.322915] 0080: 85 . 2a * 62 b 73 s 7f . 01 . 00 . 00 . d0 . 89 . 00 . 00 . 00 . 00 . 00 . 00 .
+[  128.331795] test_server, (1394, 1394), binder_thread_read, BR_NOOP 
+[  128.338045] service_manager, (1393, 1393), binder_thread_read, BR_TRANSACTION 
+[  128.345270] service_manager, (1393, 1393), binder_thread_read, print data: 
+[  128.352180] 0000: 00 . 00 . 00 . 00 . 1a . 00 . 00 . 00 . 61 a 00 . 6e n 00 . 64 d 00 . 72 r 00 .
+[  128.361020] 0016: 6f o 00 . 69 i 00 . 64 d 00 . 2e . 00 . 6f o 00 . 73 s 00 . 2e . 00 . 49 I 00 .
+[  128.369874] 0032: 53 S 00 . 65 e 00 . 72 r 00 . 76 v 00 . 69 i 00 . 63 c 00 . 65 e 00 . 4d M 00 .
+[  128.378727] 0048: 61 a 00 . 6e n 00 . 61 a 00 . 67 g 00 . 65 e 00 . 72 r 00 . 00 . 00 . 00 . 00 .
+[  128.387577] 0064: 05 . 00 . 00 . 00 . 68 h 00 . 65 e 00 . 6c l 00 . 6c l 00 . 6f o 00 . 00 . 00 .
+[  128.396431] 0080: 85 . 2a * 68 h 73 s 7f . 01 . 00 . 00 . 01 . 00 . 00 . 00 . 00 . 00 . 00 . 00 .
+[  128.405297] test_server, (1394, 1394), binder_thread_read, BR_TRANSACTION_COMPLETE 
+[  128.413111] service_manager, (1393, 1393), binder_thread_write, BC_ACQUIRE 
+[  128.419896] test_server, (1394, 1394), binder_thread_read, BR_NOOP 
+[  128.426149] service_manager, (1393, 1393), binder_thread_write, BC_REQUEST_DEATH_NOTIFICATION 
+[  128.434731] service_manager, (1393, 1393), binder_thread_write, BC_FREE_BUFFER 
+[  128.442055] service_manager, (1393, 1393), binder_thread_write, BC_REPLY 
+[  128.448793] binder: 1393:1393 BC_REPLY 5 -> 1394:1394, data be82ca54-be82ca44 size 4-0
+[  128.456687] service_manager, (1393, 1393), binder_transaction, print data: 
+[  128.463630] 2: TCNTB=0000028a, TCNTO=000000f4, TINT_CSTAT=00000008
+[  128.469818] 0000: 00 . 00 . 00 . 00 .
+[  128.473443] test_server, (1394, 1394), binder_thread_read, BR_REPLY 
+[  128.479784] test_server, (1394, 1394), binder_thread_read, print data: 
+[  128.486373] 0000: 00 . 00 . 00 . 00 .
+[  128.490038] service_manager, (1393, 1393), binder_thread_read, BR_NOOP 
+[  128.496631] test_server, (1394, 1394), binder_thread_write, BC_FREE_BUFFER 
+[  128.503594] service_manager, (1393, 1393), binder_thread_read, BR_TRANSACTION_COMPLETE 
+[  128.511564] test_server, (1394, 1394), binder_thread_write, BC_TRANSACTION 
+[  128.518492] binder: 1394:1394 BC_TRANSACTION 6 -> 1393 - node 1, data bea26a6c-bea26a5c size 100-4
+[  128.527441] test_server, (1394, 1394), binder_transaction, print data: 
+[  128.534049] 0000: 00 . 00 . 00 . 00 . 1a . 00 . 00 . 00 . 61 a 00 . 6e n 00 . 64 d 00 . 72 r 00 .
+[  128.542869] 0016: 6f o 00 . 69 i 00 . 64 d 00 . 2e . 00 . 6f o 00 . 73 s 00 . 2e . 00 . 49 I 00 .
+[  128.551716] 0032: 53 S 00 . 65 e 00 . 72 r 00 . 76 v 00 . 69 i 00 . 63 c 00 . 65 e 00 . 4d M 00 .
+[  128.560575] 0048: 61 a 00 . 6e n 00 . 61 a 00 . 67 g 00 . 65 e 00 . 72 r 00 . 00 . 00 . 00 . 00 .
+[  128.569426] 0064: 07 . 00 . 00 . 00 . 67 g 00 . 6f o 00 . 6f o 00 . 64 d 00 . 62 b 00 . 79 y 00 .
+[  128.578281] 0080: 65 e 00 . 00 . 00 . 85 . 2a * 62 b 73 s 7f . 01 . 00 . 00 . 28 ( 8b . 00 . 00 .
+[  128.587131] 0096: 00 . 00 . 00 . 00 .
+[  128.590781] test_server, (1394, 1394), binder_thread_read, BR_NOOP 
+[  128.597045] service_manager, (1393, 1393), binder_thread_read, BR_NOOP 
+[  128.603676] test_server, (1394, 1394), binder_thread_read, BR_TRANSACTION_COMPLETE 
+[  128.611289] service_manager, (1393, 1393), binder_thread_read, BR_TRANSACTION 
+[  128.618490] service_manager, (1393, 1393), binder_thread_read, print data: 
+[  128.625425] 0000: 00 . 00 . 00 . 00 . 1a . 00 . 00 . 00 . 61 a 00 . 6e n 00 . 64 d 00 . 72 r 00 .
+[  128.634266] 0016: 6f o 00 . 69 i 00 . 64 d 00 . 2e . 00 . 6f o 00 . 73 s 00 . 2e . 00 . 49 I 00 .
+[  128.643120] 0032: 53 S 00 . 65 e 00 . 72 r 00 . 76 v 00 . 69 i 00 . 63 c 00 . 65 e 00 . 4d M 00 .
+[  128.651970] 0048: 61 a 00 . 6e n 00 . 61 a 00 . 67 g 00 . 65 e 00 . 72 r 00 . 00 . 00 . 00 . 00 .
+[  128.660827] 0064: 07 . 00 . 00 . 00 . 67 g 00 . 6f o 00 . 6f o 00 . 64 d 00 . 62 b 00 . 79 y 00 .
+[  128.669681] 0080: 65 e 00 . 00 . 00 . 85 . 2a * 68 h 73 s 7f . 01 . 00 . 00 . 02 . 00 . 00 . 00 .
+[  128.678535] 0096: 00 . 00 . 00 . 00 .
+[  128.682189] test_server, (1394, 1394), binder_thread_read, BR_NOOP 
+[  128.688481] service_manager, (1393, 1393), binder_thread_write, BC_ACQUIRE 
+[  128.695425] service_manager, (1393, 1393), binder_thread_write, BC_REQUEST_DEATH_NOTIFICATION 
+[  128.703987] service_manager, (1393, 1393), binder_thread_write, BC_FREE_BUFFER 
+[  128.711279] service_manager, (1393, 1393), binder_thread_write, BC_REPLY 
+[  128.718043] binder: 1393:1393 BC_REPLY 9 -> 1394:1394, data be82ca54-be82ca44 size 4-0
+[  128.725963] service_manager, (1393, 1393), binder_transaction, print data: 
+[  128.732879] 0000: 00 . 00 . 00 . 00 .
+[  128.736529] test_server, (1394, 1394), binder_thread_read, BR_REPLY 
+[  128.742972] test_server, (1394, 1394), binder_thread_read, print data: 
+[  128.749461] 0000: 00 . 00 . 00 . 00 .
+[  128.753101] service_manager, (1393, 1393), binder_thread_read, BR_NOOP 
+[  128.759744] test_server, (1394, 1394), binder_thread_write, BC_FREE_BUFFER 
+[  128.766663] service_manager, (1393, 1393), binder_thread_read, BR_TRANSACTION_COMPLETE 
+[  128.774651] test_server, (1394, 1394), binder_thread_write, BC_ENTER_LOOPER 
+[  128.781673] service_manager, (1393, 1393), binder_thread_read, BR_NOOP 
+[  128.788282] test_server, (1394, 1394), binder_thread_read, BR_NOOP 
+svcmgr: add_service( hello ,1)
+svcmgr: add_service( goodbye ,2)
+
+[root@FriendlyARM servicemanager]# ./test_client hello
+[  171.757504] test_client, (1401, 1401), binder_thread_write, BC_TRANSACTION 
+[  171.757613] binder: 1401:1401 BC_TRANSACTION 10 -> 1393 - node 1, data beedaa5c-beedaa4c size 80-0
+[  171.757730] test_client, (1401, 1401), binder_transaction, print data: 
+[  171.757813] 0000: 00 . 00 . 00 . 00 . 1a . 00 . 00 . 00 . 61 a 00 . 6e n 00 . 64 d 00 . 72 r 00 .
+[  171.766553] 0016: 6f o 00 . 69 i 00 . 64 d 00 . 2e . 00 . 6f o 00 . 73 s 00 . 2e . 00 . 49 I 00 .
+[  171.775404] 0032: 53 S 00 . 65 e 00 . 72 r 00 . 76 v 00 . 69 i 00 . 63 c 00 . 65 e 00 . 4d M 00 .
+[  171.784257] 0048: 61 a 00 . 6e n 00 . 61 a 00 . 67 g 00 . 65 e 00 . 72 r 00 . 00 . 00 . 00 . 00 .
+[  171.793107] 0064: 05 . 00 . 00 . 00 . 68 h 00 . 65 e 00 . 6c l 00 . 6c l 00 . 6f o 00 . 00 . 00 .
+[  171.801978] test_client, (1401, 1401), binder_thread_read, BR_NOOP 
+[  171.808252] service_manager, (1393, 1393), binder_thread_read, BR_TRANSACTION 
+[  171.816960] service_manager, (1393, 1393), binder_thread_read, print data: 
+[  171.822405] 0000: 00 . 00 . 00 . 00 . 1a . 00 . 00 . 00 . 61 a 00 . 6e n 00 . 64 d 00 . 72 r 00 .
+[  171.831212] 0016: 6f o 00 . 69 i 00 . 64 d 00 . 2e . 00 . 6f o 00 . 73 s 00 . 2e . 00 . 49 I 00 .
+[  171.840075] 0032: 53 S 00 . 65 e 00 . 72 r 00 . 76 v 00 . 69 i 00 . 63 c 00 . 65 e 00 . 4d M 00 .
+[  171.848919] 0048: 61 a 00 . 6e n 00 . 61 a 00 . 67 g 00 . 65 e 00 . 72 r 00 . 00 . 00 . 00 . 00 .
+[  171.857772] 0064: 05 . 00 . 00 . 00 . 68 h 00 . 65 e 00 . 6c l 00 . 6c l 00 . 6f o 00 . 00 . 00 .
+[  171.866651] test_client, (1401, 1401), binder_thread_read, BR_TRANSACTION_COMPLETE 
+[  171.874303] service_manager, (1393, 1393), binder_thread_write, BC_FREE_BUFFER 
+[  171.881594] service_manager, (1393, 1393), binder_thread_write, BC_REPLY 
+[  171.888360] binder: 1393:1393 BC_REPLY 11 -> 1401:1401, data be82ca54-be82ca44 size 16-4
+[  171.896419] service_manager, (1393, 1393), binder_transaction, print data: 
+[  171.903357] 0000: 85 . 2a * 68 h 73 s 7f . 01 . 00 . 00 . 01 . 00 . 00 . 00 . 00 . 00 . 00 . 00 .
+[  171.912220] test_client, (1401, 1401), binder_thread_read, BR_NOOP 
+[  171.918485] service_manager, (1393, 1393), binder_thread_read, BR_NOOP 
+[  171.925090] test_client, (1401, 1401), binder_thread_read, BR_REPLY 
+[  171.931390] test_client, (1401, 1401), binder_thread_read, print data: 
+[  171.937986] 0000: 85 . 2a * 68 h 73 s 7f . 01 . 00 . 00 . 01 . 00 . 00 . 00 . 00 . 00 . 00 . 00 .
+[  171.946849] service_manager, (1393, 1393), binder_thread_read, BR_TRANSACTION_COMPLETE 
+[  171.954850] test_client, (1401, 1401), binder_thread_write, BC_ACQUIRE 
+[  171.961470] service_manager, (1393, 1393), binder_thread_read, BR_NOOP 
+[  171.968037] test_client, (1401, 1401), binder_thread_write, BC_FREE_BUFFER 
+[  171.975092] test_client, (1401, 1401), binder_thread_write, BC_TRANSACTION 
+[  171.981919] binder: 1401:1401 BC_TRANSACTION 13 -> 1393 - node 1, data beedaa5c-beedaa4c size 84-0
+[  171.990883] test_client, (1401, 1401), binder_transaction, print data: 
+[  171.997460] 0000: 00 . 00 . 00 . 00 . 1a . 00 . 00 . 00 . 61 a 00 . 6e n 00 . 64 d 00 . 72 r 00 .
+[  172.006290] 0016: 6f o 00 . 69 i 00 . 64 d 00 . 2e . 00 . 6f o 00 . 73 s 00 . 2e . 00 . 49 I 00 .
+[  172.015158] 0032: 53 S 00 . 65 e 00 . 72 r 00 . 76 v 00 . 69 i 00 . 63 c 00 . 65 e 00 . 4d M 00 .
+[  172.023999] 0048: 61 a 00 . 6e n 00 . 61 a 00 . 67 g 00 . 65 e 00 . 72 r 00 . 00 . 00 . 00 . 00 .
+[  172.032852] 0064: 07 . 00 . 00 . 00 . 67 g 00 . 6f o 00 . 6f o 00 . 64 d 00 . 62 b 00 . 79 y 00 .
+[  172.041702] 0080: 65 e 00 . 00 . 00 .
+[  172.045353] test_client, (1401, 1401), binder_thread_read, BR_NOOP 
+[  172.051620] service_manager, (1393, 1393), binder_thread_read, BR_TRANSACTION 
+[  172.058828] service_manager, (1393, 1393), binder_thread_read, print data: 
+[  172.065756] 0000: 00 . 00 . 00 . 00 . 1a . 00 . 00 . 00 . 61 a 00 . 6e n 00 . 64 d 00 . 72 r 00 .
+[  172.074599] 0016: 6f o 00 . 69 i 00 . 64 d 00 . 2e . 00 . 6f o 00 . 73 s 00 . 2e . 00 . 49 I 00 .
+[  172.083453] 0032: 53 S 00 . 65 e 00 . 72 r 00 . 76 v 00 . 69 i 00 . 63 c 00 . 65 e 00 . 4d M 00 .
+[  172.092306] 0048: 61 a 00 . 6e n 00 . 61 a 00 . 67 g 00 . 65 e 00 . 72 r 00 . 00 . 00 . 00 . 00 .
+[  172.101160] 0064: 07 . 00 . 00 . 00 . 67 g 00 . 6f o 00 . 6f o 00 . 64 d 00 . 62 b 00 . 79 y 00 .
+[  172.110026] 0080: 65 e 00 . 00 . 00 .
+[  172.113679] test_client, (1401, 1401), binder_thread_read, BR_TRANSACTION_COMPLETE 
+[  172.121365] service_manager, (1393, 1393), binder_thread_write, BC_FREE_BUFFER 
+[  172.128603] service_manager, (1393, 1393), binder_thread_write, BC_REPLY 
+[  172.135381] binder: 1393:1393 BC_REPLY 14 -> 1401:1401, data be82ca54-be82ca44 size 16-4
+[  172.143445] service_manager, (1393, 1393), binder_transaction, print data: 
+[  172.150388] 0000: 85 . 2a * 68 h 73 s 7f . 01 . 00 . 00 . 02 . 00 . 00 . 00 . 00 . 00 . 00 . 00 .
+[  172.159252] test_client, (1401, 1401), binder_thread_read, BR_NOOP 
+[  172.165510] service_manager, (1393, 1393), binder_thread_read, BR_NOOP 
+[  172.172103] test_client, (1401, 1401), binder_thread_read, BR_REPLY 
+[  172.178427] test_client, (1401, 1401), binder_thread_read, print data: 
+[  172.185052] 0000: 85 . 2a * 68 h 73 s 7f . 01 . 00 . 00 . 02 . 00 . 00 . 00 . 00 . 00 . 00 . 00 .
+[  172.193885] service_manager, (1393, 1393), binder_thread_read, BR_TRANSACTION_COMPLETE 
+[  172.201887] test_client, (1401, 1401), binder_thread_write, BC_ACQUIRE 
+[  172.208476] service_manager, (1393, 1393), binder_thread_read, BR_NOOP 
+[  172.215073] test_client, (1401, 1401), binder_thread_write, BC_FREE_BUFFER 
+[  172.222041] test_client, (1401, 1401), binder_thread_write, BC_TRANSACTION 
+[  172.228958] binder: 1401:1401 BC_TRANSACTION 16 -> 1394 - node 3, data beedaa60-beedaa50 size 4-0
+[  172.237806] test_client, (1401, 1401), binder_transaction, print data: 
+[  172.244479] 0000: 00 . 00 . 00 . 00 .
+[  172.248044] test_client, (1401, 1401), binder_thread_read, BR_NOOP 
+[  172.254303] test_server, (1394, 1394), binder_thread_read, BR_TRANSACTION 
+[  172.261635] test_server, (1394, 1394), binder_thread_read, print data: 
+[  172.267753] 0000: 00 . 00 . 00 . 00 .
+[  172.271393] test_client, (1401, 1401), binder_thread_read, BR_TRANSACTION_COMPLETE 
+[  172.279182] test_server, (1394, 1394), binder_thread_write, BC_FREE_BUFFER 
+[  172.285980] test_server, (1394, 1394), binder_thread_write, BC_REPLY 
+[  172.292401] binder: 1394:1394 BC_REPLY 17 -> 1401:1401, data bea26a54-bea26a44 size 0-0
+[  172.300403] test_server, (1394, 1394), binder_transaction, print data: 
+[  172.306988] test_client, (1401, 1401), binder_thread_read, BR_NOOP 
+[  172.313276] test_server, (1394, 1394), binder_thread_read, BR_NOOP 
+[  172.319484] test_client, (1401, 1401), binder_thread_read, BR_REPLY 
+[  172.325822] test_client, (1401, 1401), binder_thread_read, print data: 
+[  172.332421] test_server, (1394, 1394), binder_thread_read, BR_TRANSACTION_COMPLETE 
+[  172.340070] test_client, (1401, 1401), binder_thread_write, BC_FREE_BUFFER 
+[  172.347028] test_server, (1394, 1394), binder_thread_read, BR_NOOP 
+[  172.353263] test_client, (1401, 1401), binder_thread_write, BC_RELEASE 
+[  172.359844] test_client, (1401, 1401), binder_thread_write, BC_RELEASE 
+get hello service handle = 1
+get goodbye service handle = 2
+say hello 0 
