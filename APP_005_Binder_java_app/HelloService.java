@@ -1,6 +1,8 @@
 /* impl hello service */
 
-public interface HelloService extends android.os.IInterface
+import android.util.Slog;
+
+public class HelloService extends IHelloService.Stub
 {
 	private static final String TAG = "HelloService";
 	private int cnt1 = 0;

@@ -5,7 +5,10 @@
  */
 
  /*test_client <hello|goodbye> [name]*/
- 
+import android.util.Slog;
+import android.os.ServiceManager;
+import android.os.IBinder;
+
 public class TestClient{
 	private static final String TAG = "TestClient";
 		
@@ -32,13 +35,17 @@ public class TestClient{
 			
 			if(args.length == 1)
 			{
-				svr.sayhello();
-				System.out.println("Call sayhello !");
-				Slog.i(TAG, "Call sayhello");
+				try{
+					svr.sayhello();
+					System.out.println("Call sayhello !");
+					Slog.i(TAG, "Call sayhello");
+				}catch(Exception e){}
 			}else{
-				int cnt = svr.sayhello_to(args[1]);
-				System.out.println("Call sayhello_to !"+args[1]+"cnt= "+cnt);
-				Slog.i(TAG, "Call sayhello_to");
+				try{
+					int cnt = svr.sayhello_to(args[1]);
+					System.out.println("Call sayhello_to !"+args[1]+"cnt= "+cnt);
+					Slog.i(TAG, "Call sayhello_to");
+				}catch(Exception e){}
 			}
 		}
 					

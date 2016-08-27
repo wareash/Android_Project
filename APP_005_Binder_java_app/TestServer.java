@@ -1,4 +1,5 @@
-
+import android.util.Slog;
+import android.os.ServiceManager;
 
 /*
   *1. add service
@@ -15,7 +16,9 @@ public class TestServer{
 
 		while(true)
 		{
-			Thread.sleep(100);
+			try{
+				Thread.sleep(100);
+			}catch(Exception e){};
 		}
 	}
 }
