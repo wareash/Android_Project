@@ -12,8 +12,8 @@ public class TestServer{
 	{
 		Slog.i(TAG, "add Hello Service");
 		ServiceManager.addService("hello", new HelloService());
-
-
+		ServiceManager.addService("goodbye", new GoodbyeService());
+		
 		while(true)
 		{
 			try{
